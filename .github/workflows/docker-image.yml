@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
 jobs:
 
   build:
@@ -13,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set IMAGE_TAG environment variable
+      run: |
+        echo "IMAGE_TAG=$(date +%S)" >> $GITHUB_ENV
+    
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: |
